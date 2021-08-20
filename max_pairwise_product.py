@@ -2,14 +2,27 @@
 
 
 def max_pairwise_product(numbers):
-    if len(numbers) < 2:
-        return(o)
-    n = max(numbers)
-    numbers.remove(n)
-    m= max(numbers)
+    n = len(numbers)
+    max_product = 0
+    sec_l= numbers[1]
+    fir_l= numbers[0]
 
+    def check_swap(fir_l, sec_l):
+        if sec_l > fir_l:
+            sec_l, fir_l = fir_l, sec_l
+        
+        return (fir_l, sec_l)
+    
+    fir_l, sec_l = check_swap(fir_l, sec_l)
 
-    return n*m
+    for number in numbers[2:]:
+        if number > sec_l :
+            sec_l = number
+            fir_l, sec_l = check_swap(fir_l, sec_l)
+
+    
+
+    return fir_l * sec_l
 
 
 if __name__ == '__main__':
